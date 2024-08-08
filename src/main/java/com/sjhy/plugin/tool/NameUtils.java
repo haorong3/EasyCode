@@ -60,6 +60,46 @@ public class NameUtils {
     }
 
     /**
+     * 将小驼峰命名转换为大驼峰命名
+     *
+     * @param name 小驼峰命名的字符串
+     * @return 转换后的大驼峰命名字符串
+     */
+    public String lowerToUpperCamelCase(String name) {
+        return StringUtils.lowerToUpperCamelCase(name);
+    }
+    /**
+     * 将大驼峰命名转换为小驼峰命名
+     *
+     * @param name 大驼峰命名的字符串
+     * @return 转换后的小驼峰命名字符串
+     */
+    public String upperToLowerCamelCase(String name) {
+        return StringUtils.upperToLowerCamelCase(name);
+    }
+
+
+    /**
+     * 将小驼峰命名转换为下划线大写命名
+     *
+     * @param name 小驼峰命名的字符串
+     * @return 转换后的下划线大写命名字符串
+     */
+    public String lowerCamelToSnakeCase(String name) {
+        return StringUtils.lowerCamelToSnakeCase(name);
+    }
+
+    /**
+     * 将大驼峰命名转换为下划线大写命名
+     *
+     * @param name 大驼峰命名的字符串
+     * @return 转换后的下划线大写命名字符串
+     */
+    public String upperCamelToSnakeCase(String name) {
+        return StringUtils.upperCamelToSnakeCase(name);
+    }
+
+    /**
      * 驼峰转下划线，全小写
      *
      * @param str 驼峰字符串
