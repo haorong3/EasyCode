@@ -1,0 +1,118 @@
+##导入宏定义
+$!{define.vm}
+$!{init.vm}
+##设置表后缀（宏定义）
+#setTableSuffix("Controller")
+
+##保存文件（宏定义）
+#save("/controller", "Controller.java")
+
+##包路径（宏定义）
+#setPackageSuffix("controller")
+
+##定义服务名
+#set($serviceName = $!tool.append($!tool.firstLowerCase($!tableInfo.name), "Service"))
+
+##定义实体对象名
+#set($entityName = $!tool.firstLowerCase($!tableInfo.name))
+
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import lombok.RequiredArgsConstructor;
+
+import cn.busboss.sc.api.basedata.entity.BaseCertificate;
+
+import cn.busboss.sc.api.common.dto.R;
+import cn.busboss.sc.common.core.web.ui.devexpress.ClauseBuilder;
+import cn.busboss.sc.common.core.web.ui.devexpress.loadoptions.LoadOptions;
+import cn.busboss.sc.common.utils.ValidationUtil;
+import $!{tableInfo.savePackageName}.dto.$!{tableInfo.name}Dto;
+import $!{tableInfo.savePackageName}.url.$!{tableInfo.name}Url;
+import $!{tableInfo.savePackageName}.entity.$!tableInfo.name;
+import $!{tableInfo.savePackageName}.service.I$!{tableInfo.name}Service;
+import org.springframework.web.bind.annotation.*;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+
+##表注释（宏定义）
+#tableComment("表控制层")
+@RestController
+@RequiredArgsConstructor
+public class $!{tableName} {
+/**
+ * 服务对象
+ */
+private final I$!{tableInfo.name}Service $!{serviceName};
+
+/**
+ * ${tableInfo.comment}相关列表（管理端）
+ * @param loadOptions 前端devExpress-datagrid动态请求参数
+ * @return
+ */
+@PostMapping(${tableInfo.name}Url.$tool.upperCamelToSnakeCase($!{tableInfo.name})_ADMIN_LIST)
+public R get${tableInfo.name}(@RequestBody LoadOptions<$!{tableInfo.name}Dto> loadOptions) throws Exception {
+        $!{tableInfo.name}Dto requestData = loadOptions.getUserData();
+    // 命令合法性校验
+    ValidationUtil.validate(requestData, $!{tableInfo.name}Dto.OnSearch.class);
+    // 根据前端请求参数动态构造相关SQL查询子句
+    Map<String, String> clauseMap = ClauseBuilder.build(loadOptions,$!{tableInfo.name}.getMapping());
+    // 赋值 - 动态sort子句
+    loadOptions.setSortClause(clauseMap.get(ClauseBuilder.SORT_CLAUSE));
+    // 赋值 - 动态where子句
+    loadOptions.setWhereClause(clauseMap.get(ClauseBuilder.WHERE_CLAUSE));
+
+    Page<$!{tableInfo.name}> pageData = $!{serviceName}.dynamicPagination(loadOptions);
+
+    return R.ok().setData(pageData);
+}
+
+
+/**
+ * ${tableInfo.comment}查询单个（管理端）
+ * @param requestData
+ * @return
+ */
+@PostMapping(${tableInfo.name}Url.$tool.upperCamelToSnakeCase($!{tableInfo.name})_ADMIN_BYID)
+public R get${tableInfo.name}ById(@RequestBody $!{tableInfo.name} requestData) throws Exception {
+    // 命令合法性校验
+    ValidationUtil.validate(requestData, $!{tableInfo.name}.OnSearchById. class);
+    return R.ok().setData($!{serviceName}.getById(requestData.getId()));
+}
+
+/**
+ * ${tableInfo.comment}新增（管理端）
+ * @param requestData
+ * @return
+ * @throws Exception
+ */
+@PostMapping(${tableInfo.name}Url.$tool.upperCamelToSnakeCase($!{tableInfo.name})_ADMIN_ADD)
+public R add${tableInfo.name}(@RequestBody $!{tableInfo.name} requestData) throws Exception {
+    ValidationUtil.validate(requestData, $!{tableInfo.name}.OnAdd. class);
+    $!{serviceName}.save(requestData);
+    return R.ok();
+}
+
+/**
+ *  ${tableInfo.comment}编辑（管理端）
+ * @param requestData
+ * @return
+ * @throws Exception
+ */
+@PostMapping(${tableInfo.name}Url.$tool.upperCamelToSnakeCase($!{tableInfo.name})_ADMIN_EDIT)
+public R edit${tableInfo.name}(@RequestBody $!{tableInfo.name} requestData) throws Exception {
+    ValidationUtil.validate(requestData, $!{tableInfo.name}.OnEdit. class);
+    $!{serviceName}.updateById(requestData);
+    return R.ok();
+}
+
+/**
+ * ${tableInfo.comment}删除（管理端）
+ * @param requestData
+ * @return
+ * @throws Exception
+ */
+@PostMapping(${tableInfo.name}Url.$tool.upperCamelToSnakeCase($!{tableInfo.name})_ADMIN_DELETE)
+public R delete${tableInfo.name}(@RequestBody $!{tableInfo.name} requestData) throws Exception {
+    ValidationUtil.validate(requestData, $!{tableInfo.name}.OnDelete. class);
+    $!{serviceName}.removeById(requestData);
+    return R.ok();
+}
+}

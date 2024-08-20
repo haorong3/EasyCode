@@ -25,6 +25,55 @@ import java.util.Map;
 @Data
 public class SettingsStorageDTO {
     /**
+     * 作者
+     */
+    private String author;
+    /**
+     * 版本号
+     */
+    private String version;
+    /**
+     * 用户密钥
+     */
+    private String userSecure;
+    /**
+     * 当前类型映射组名
+     */
+    private String currTypeMapperGroupName;
+    /**
+     * 类型映射组
+     */
+    @JsonProperty("typeMapper")
+    private Map<String, TypeMapperGroup> typeMapperGroupMap;
+    /**
+     * 当前模板组名
+     */
+    private String currTemplateGroupName;
+    /**
+     * 模板组
+     */
+    @JsonProperty("template")
+    private Map<String, TemplateGroup> templateGroupMap;
+    /**
+     * 当前配置表组名
+     */
+    private String currColumnConfigGroupName;
+    /**
+     * 配置表组
+     */
+    @JsonProperty("columnConfig")
+    private Map<String, ColumnConfigGroup> columnConfigGroupMap;
+    /**
+     * 当前全局配置组名
+     */
+    private String currGlobalConfigGroupName;
+    /**
+     * 全局配置组
+     */
+    @JsonProperty("globalConfig")
+    private Map<String, GlobalConfigGroup> globalConfigGroupMap;
+
+    /**
      * 返回默认值，不使用静态常量，防止默认值别篡改
      *
      * @return 储存对象
@@ -92,74 +141,25 @@ public class SettingsStorageDTO {
         // 恢复已被删除的分组
         defaultVal.getTemplateGroupMap().forEach((k, v) -> {
             if (!getTemplateGroupMap().containsKey(k)) {
-                getTemplateGroupMap().put(k,v );
+                getTemplateGroupMap().put(k, v);
             }
         });
         defaultVal.getGlobalConfigGroupMap().forEach((k, v) -> {
             if (!getGlobalConfigGroupMap().containsKey(k)) {
-                getGlobalConfigGroupMap().put(k,v );
+                getGlobalConfigGroupMap().put(k, v);
             }
         });
         defaultVal.getColumnConfigGroupMap().forEach((k, v) -> {
             if (!getColumnConfigGroupMap().containsKey(k)) {
-                getColumnConfigGroupMap().put(k,v );
+                getColumnConfigGroupMap().put(k, v);
             }
         });
         defaultVal.getTypeMapperGroupMap().forEach((k, v) -> {
             if (!getTypeMapperGroupMap().containsKey(k)) {
-                getTypeMapperGroupMap().put(k,v );
+                getTypeMapperGroupMap().put(k, v);
             }
         });
     }
-
-    /**
-     * 作者
-     */
-    private String author;
-    /**
-     * 版本号
-     */
-    private String version;
-    /**
-     * 用户密钥
-     */
-    private String userSecure;
-    /**
-     * 当前类型映射组名
-     */
-    private String currTypeMapperGroupName;
-    /**
-     * 类型映射组
-     */
-    @JsonProperty("typeMapper")
-    private Map<String, TypeMapperGroup> typeMapperGroupMap;
-    /**
-     * 当前模板组名
-     */
-    private String currTemplateGroupName;
-    /**
-     * 模板组
-     */
-    @JsonProperty("template")
-    private Map<String, TemplateGroup> templateGroupMap;
-    /**
-     * 当前配置表组名
-     */
-    private String currColumnConfigGroupName;
-    /**
-     * 配置表组
-     */
-    @JsonProperty("columnConfig")
-    private Map<String, ColumnConfigGroup> columnConfigGroupMap;
-    /**
-     * 当前全局配置组名
-     */
-    private String currGlobalConfigGroupName;
-    /**
-     * 全局配置组
-     */
-    @JsonProperty("globalConfig")
-    private Map<String, GlobalConfigGroup> globalConfigGroupMap;
 
     public void fillDefaultVal() {
         SettingsStorageDTO defaultVal = defaultVal();

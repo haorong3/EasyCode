@@ -19,6 +19,7 @@ import $pkType;
 import $entityType;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+
 import java.util.Collection;
 import java.util.List;
 
@@ -31,14 +32,14 @@ import java.util.List;
  */
 public interface $!{tableName} {
 
-    void save($entityShortType $entityVarName);
+void save($entityShortType $entityVarName);
 
-    void deleteById($pkShortType id);
+void deleteById($pkShortType id);
 
     $entityShortType findById($pkShortType id);
 
-    List<$entityShortType> findById(Collection<$pkShortType> ids);
+List<$entityShortType> findById(Collection<$pkShortType> ids);
 
-    Page<$entityShortType> list(Pageable page);
+Page<$entityShortType> list(Pageable page);
 
 }

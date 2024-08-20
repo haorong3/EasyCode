@@ -1,0 +1,79 @@
+##导入宏定义
+$!{define.vm}
+$!{init.vm}
+##保存文件（宏定义）
+#save("/entity", ".java")
+
+##包路径（宏定义）
+#setPackageSuffix("entity")
+
+##自动导入包（全局变量）
+$!autoImport
+import cn.busboss.sc.api.common.dto.CoreBaseEntity;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableName;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
+import lombok.Data;
+import cn.busboss.sc.api.common.dto.CoreBaseEntity;
+import com.baomidou.mybatisplus.annotation.TableName;
+
+import java.io.Serializable;
+
+##表注释（宏定义）
+#tableComment("表实体类")
+@Data
+@SuperBuilder
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(callSuper = true)
+@TableName(schema = "${tableInfo.obj.parent.name}", value = "$tableInfo.obj.name")
+@ApiModel(value = "$!{tableInfo.name}对象", description = "${tableInfo.comment}")
+public class $!{tableInfo.name} extends CoreBaseEntity implements
+
+Serializable {
+    #foreach($column in $tableInfo.fullColumn)
+        #if(
+            ${column.obj.name} !="deleted" &&
+            ${column.obj.name} !="version" &&
+            ${column.obj.name} !="deleted" &&
+            ${column.obj.name} !="version"  &&
+            ${column.obj.name} !="product_line_id"  &&
+            ${column.obj.name} !="status_id"  &&
+            ${column.obj.name} !="modify_by"  &&
+            ${column.obj.name} !="modify_time"  &&
+            ${column.obj.name} !="tenant_id"  &&
+            ${column.obj.name} !="enabled" &&
+            ${column.obj.name} !="remark" &&
+            ${column.obj.name} !="enabled" &&
+            ${column.obj.name} !="create_by" &&
+            ${column.obj.name} !="create_time"
+        )
+            #if(${column.obj.name} =="id")
+                @ApiModelProperty("${column.comment}")
+                private $!{tool.getClsNameByFullName($column.type)} $!{column.name};
+            #else
+
+                #if(${column.comment})
+                @ApiModelProperty("${column.comment}")
+                #end
+            private $!{tool.getClsNameByFullName($column.type)} $!{column.name};
+            #end  #end
+    #end
+
+    /**
+     *  获取 数据库映射字段
+     *  key: 字段名 （ devextreme 字段名）
+     *  value: 数据库字段名(别名+ 字段名)
+     *  例: key: depotName  value: tbrs.name
+     * @return
+     */
+    public static Map<String, String> getMapping () {
+        return Map.of();
+    }
+}

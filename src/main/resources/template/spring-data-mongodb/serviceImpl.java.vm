@@ -25,9 +25,12 @@ import $entityType;
 import $serviceType;
 import $repositoryType;
 import org.springframework.stereotype.Service;
+
 import javax.annotation.Resource;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -43,34 +46,34 @@ import java.util.stream.StreamSupport;
 @Service
 public class $!{tableName} implements $!serviceSortType {
 
-	@Resource
-    private $repositorySortType $repositoryVarName;
+@Resource
+private $repositorySortType $repositoryVarName;
 
-    @Override
-    public void save($entityShortType $entityVarName) {
-        $!{repositoryVarName}.save($entityVarName);
-    }
+@Override
+public void save($entityShortType $entityVarName) {
+    $!{repositoryVarName}.save($entityVarName);
+}
 
-    @Override
-    public void deleteById($pkShortType id) {
-        $!{repositoryVarName}.delete(id);
-    }
+@Override
+public void deleteById($pkShortType id) {
+    $!{repositoryVarName}.delete(id);
+}
 
-    @Override
-    public $entityShortType findById($pkShortType id) {
-        return $!{repositoryVarName}.findOne(id);
-    }
+@Override
+public $entityShortType findById($pkShortType id) {
+    return $!{repositoryVarName}.findOne(id);
+}
 
-    @Override
-    public List<$entityShortType> findById(Collection<$pkShortType> ids) {
-        Iterable<$entityShortType> iterable = $!{repositoryVarName}.findAll(ids);
-        return StreamSupport.stream(iterable.spliterator(), false)
-                .collect(Collectors.toList());
-    }
+@Override
+public List<$entityShortType> findById(Collection<$pkShortType> ids) {
+    Iterable<$entityShortType> iterable = $!{repositoryVarName}.findAll(ids);
+    return StreamSupport.stream(iterable.spliterator(), false)
+            .collect(Collectors.toList());
+}
 
-    @Override
-    public Page<$entityShortType> list(Pageable page) {
-        return $!{repositoryVarName}.findAll(page);
-    }
+@Override
+public Page<$entityShortType> list(Pageable page) {
+    return $!{repositoryVarName}.findAll(page);
+}
 
 }

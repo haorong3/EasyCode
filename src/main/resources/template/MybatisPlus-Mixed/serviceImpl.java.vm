@@ -19,6 +19,8 @@ import org.springframework.stereotype.Service;
 ##表注释（宏定义）
 #tableComment("表服务实现类")
 @Service("$!tool.firstLowerCase($tableInfo.name)Service")
-public class $!{tableName} extends ServiceImpl<$!{tableInfo.name}Dao, $!{tableInfo.name}> implements $!{tableInfo.name}Service {
+public class $!{tableName} extends ServiceImpl<$!{tableInfo.name}Dao, $!{tableInfo.name}> implements
+
+    $!{tableInfo.name}Service {
 
 }

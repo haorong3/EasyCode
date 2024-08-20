@@ -121,15 +121,15 @@ public class EditorComponent<T extends AbstractEditorItem> {
 
     private void refreshUI() {
         if (this.file == null) {
-            ((EditorImpl)this.editor).setViewer(true);
+            ((EditorImpl) this.editor).setViewer(true);
             // 重置文本内容
             WriteCommandAction.runWriteCommandAction(ProjectUtils.getCurrProject(), () -> this.editor.getDocument().setText(""));
-            ((EditorEx)editor).setHighlighter(EditorHighlighterFactory.getInstance().createEditorHighlighter(null, "demo.java.vm"));
+            ((EditorEx) editor).setHighlighter(EditorHighlighterFactory.getInstance().createEditorHighlighter(null, "demo.java.vm"));
         } else {
-            ((EditorImpl)this.editor).setViewer(false);
+            ((EditorImpl) this.editor).setViewer(false);
             // 重置文本内容
             WriteCommandAction.runWriteCommandAction(ProjectUtils.getCurrProject(), () -> this.editor.getDocument().setText(this.file.fileContent()));
-            ((EditorEx)editor).setHighlighter(EditorHighlighterFactory.getInstance().createEditorHighlighter(ProjectUtils.getCurrProject(), this.file.fileName()));
+            ((EditorEx) editor).setHighlighter(EditorHighlighterFactory.getInstance().createEditorHighlighter(ProjectUtils.getCurrProject(), this.file.fileName()));
         }
     }
 }

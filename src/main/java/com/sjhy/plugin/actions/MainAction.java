@@ -112,7 +112,7 @@ public class MainAction extends AnAction {
         return true;
     }
 
-    public static class Dialog  extends DialogWrapper {
+    public static class Dialog extends DialogWrapper {
 
         private String typeName;
 

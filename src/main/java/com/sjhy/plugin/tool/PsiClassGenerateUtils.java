@@ -19,7 +19,7 @@ public final class PsiClassGenerateUtils {
      * 是否是主键字段
      */
     public static boolean isPkField(PsiField field) {
-        if("id".equals(field.getName())) {
+        if ("id".equals(field.getName())) {
             return true;
         }
         if (existsAnnotation(field, "org.springframework.data.annotation.Id")) {
@@ -36,7 +36,7 @@ public final class PsiClassGenerateUtils {
      */
     public static boolean isSkipField(PsiField field) {
         PsiModifierList modifierList = field.getModifierList();
-        if(modifierList != null && modifierList.hasExplicitModifier(PsiModifier.STATIC)) {
+        if (modifierList != null && modifierList.hasExplicitModifier(PsiModifier.STATIC)) {
             return true;
         }
         if (existsAnnotation(field, "org.springframework.data.annotation.Transient")) {

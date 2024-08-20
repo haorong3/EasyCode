@@ -12,7 +12,6 @@ import lombok.Data;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -62,6 +61,7 @@ public class TableInfoSettingsDTO {
     private String generateKey(PsiClass psiClass) {
         return psiClass.getQualifiedName();
     }
+
     /**
      * 读表信息
      *

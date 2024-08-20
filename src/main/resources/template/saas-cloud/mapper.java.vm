@@ -1,0 +1,49 @@
+##导入宏定义
+$!{define.vm}
+$!{init.vm}
+##设置表后缀（宏定义）
+#setTableSuffix("Mapper")
+
+##保存文件（宏定义）
+#save("/mapper", "Mapper.java")
+
+##包路径（宏定义）
+#setPackageSuffix("mapper")
+
+import java.util.List;
+
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Param;
+import $!{tableInfo.savePackageName}.entity.$!tableInfo.name;
+import $!{tableInfo.savePackageName}.dto.$!{tableInfo.name}Dto;
+import java.util.List;
+import java.util.Map;
+##表注释（宏定义）
+#tableComment("表数据库访问层")
+public interface $!{tableName} extends BaseMapper
+
+<$!tableInfo.name> {
+
+    /**
+     * 批量新增数据（MyBatis原生foreach方法）
+     *
+     * @param entities List<$!{tableInfo.name}> 实例对象列表
+     * @return 影响行数
+     */
+    int insertBatch (@Param("entities") List <$!{tableInfo.name}> entities);
+
+    /**
+     * 动态分页查询
+     * @param params
+     * @return
+     */
+    List<$!tableInfo.name> dynamicPagination (Map < String, Object > params);
+
+    /**
+     * 动态分页查询总数
+     * @param params
+     * @return
+     */
+    Long dynamicPagination_COUNT (Map < String, Object > params);
+
+}

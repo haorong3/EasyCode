@@ -47,13 +47,13 @@ public final class ModuleUtils {
         modulePath = modulePath.replace("\\", "/");
         // 尝试消除不正确的路径
         if (modulePath.contains(".idea/modules/")) {
-            modulePath = modulePath.replace(".idea/modules/","");
+            modulePath = modulePath.replace(".idea/modules/", "");
         }
         if (modulePath.contains(".idea/modules")) {
-            modulePath = modulePath.replace(".idea/modules","");
+            modulePath = modulePath.replace(".idea/modules", "");
         }
         if (modulePath.contains("/.idea")) {
-            modulePath = modulePath.replace("/.idea","");
+            modulePath = modulePath.replace("/.idea", "");
         }
         VirtualFile dir = VirtualFileManager.getInstance().findFileByUrl(String.format("file://%s", modulePath));
         if (dir == null) {

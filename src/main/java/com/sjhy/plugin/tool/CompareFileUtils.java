@@ -4,7 +4,6 @@ import com.intellij.diff.DiffContentFactory;
 import com.intellij.diff.DiffDialogHints;
 import com.intellij.diff.DiffManager;
 import com.intellij.diff.DiffRequestFactory;
-//import com.intellij.diff.actions.impl.MutableDiffRequestChain;
 import com.intellij.diff.chains.DiffRequestChain;
 import com.intellij.diff.contents.DiffContent;
 import com.intellij.diff.requests.DiffRequest;
@@ -53,7 +52,8 @@ public class CompareFileUtils {
             // 旧版兼容
             DiffRequest diffRequest = DiffRequestFactory.getInstance().createFromFiles(project, leftFile, rightFile);
             DiffManager.getInstance().showDiff(project, diffRequest, DiffDialogHints.MODAL);
-        } catch (IllegalAccessException | InstantiationException | NoSuchMethodException | InvocationTargetException e) {
+        } catch (IllegalAccessException | InstantiationException | NoSuchMethodException |
+                 InvocationTargetException e) {
             ExceptionUtil.rethrow(e);
         }
     }

@@ -25,6 +25,8 @@ import org.springframework.data.mongodb.repository.MongoRepository;
  * @author $!author
  * @since $!time.currTime()
  */
-public interface $!{tableName} extends MongoRepository<$entityShortType, $pkShortType> {
+public interface $!{tableName} extends MongoRepository
+
+<$entityShortType, $pkShortType> {
 
 }

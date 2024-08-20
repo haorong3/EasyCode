@@ -23,7 +23,7 @@ public class TableInfo {
 
     /**
      * 原始对象（从实体生成）
-     *
+     * <p>
      * Note: 实际类型是com.intellij.psi.PsiClass，为了避免velocity反射出现ClassNotFound，写为Object类型
      */
     @JsonIgnore

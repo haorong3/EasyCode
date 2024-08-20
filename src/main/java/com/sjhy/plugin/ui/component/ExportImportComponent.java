@@ -5,7 +5,6 @@ import com.intellij.openapi.ui.DialogWrapper;
 import com.intellij.openapi.ui.Messages;
 import com.intellij.openapi.ui.VerticalFlowLayout;
 import com.intellij.openapi.ui.ex.MultiLineLabel;
-import com.intellij.openapi.ui.popup.JBPopupFactory;
 import com.sjhy.plugin.dict.GlobalDict;
 import com.sjhy.plugin.dto.SettingsStorageDTO;
 import com.sjhy.plugin.entity.AbstractGroup;
@@ -219,6 +218,21 @@ public class ExportImportComponent {
         }
     }
 
+    public enum Operator {
+        /**
+         * 覆盖
+         */
+        COVER,
+        /**
+         * 重命名
+         */
+        RENAME,
+        /**
+         * 丢弃
+         */
+        DISCARD
+    }
+
     private static class Handler<T extends AbstractGroup> {
         @Getter
         private ListRadioComponent radioComponent;
@@ -263,20 +277,5 @@ public class ExportImportComponent {
                     break;
             }
         }
-    }
-
-    public enum Operator {
-        /**
-         * 覆盖
-         */
-        COVER,
-        /**
-         * 重命名
-         */
-        RENAME,
-        /**
-         * 丢弃
-         */
-        DISCARD
     }
 }

@@ -29,16 +29,46 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 public class TableInfoDTO {
 
+    /**
+     * 表名（首字母大写）
+     */
+    private String name;
+    /**
+     * 表名前缀
+     */
+    private String preName;
+    /**
+     * 注释
+     */
+    private String comment;
+    /**
+     * 模板组名称
+     */
+    private String templateGroupName;
+    /**
+     * 所有列
+     */
+    private List<ColumnInfoDTO> fullColumn;
+    /**
+     * 保存的包名称
+     */
+    private String savePackageName;
+    /**
+     * 保存路径
+     */
+    private String savePath;
+    /**
+     * 保存的model名称
+     */
+    private String saveModelName;
     public TableInfoDTO(TableInfoDTO dto, DbTable dbTable) {
         this(dbTable);
         merge(dto, this);
     }
-
     public TableInfoDTO(TableInfoDTO dto, PsiClass psiClass) {
         this(psiClass);
         merge(dto, this);
     }
-
     private TableInfoDTO(PsiClass psiClass) {
         this.name = psiClass.getName();
         this.preName = "";
@@ -52,7 +82,6 @@ public class TableInfoDTO {
             this.fullColumn.add(new ColumnInfoDTO(field));
         }
     }
-
     private TableInfoDTO(DbTable dbTable) {
         this.name = NameUtils.getInstance().getClassName(dbTable.getName());
         this.preName = "";
@@ -154,39 +183,28 @@ public class TableInfoDTO {
         newData.getFullColumn().addAll(tmpList);
     }
 
-
-    /**
-     * 表名（首字母大写）
-     */
-    private String name;
-    /**
-     * 表名前缀
-     */
-    private String preName;
-    /**
-     * 注释
-     */
-    private String comment;
-    /**
-     * 模板组名称
-     */
-    private String templateGroupName;
-    /**
-     * 所有列
-     */
-    private List<ColumnInfoDTO> fullColumn;
-    /**
-     * 保存的包名称
-     */
-    private String savePackageName;
-    /**
-     * 保存路径
-     */
-    private String savePath;
-    /**
-     * 保存的model名称
-     */
-    private String saveModelName;
+    public static TableInfoDTO valueOf(TableInfo tableInfo) {
+        TableInfoDTO dto = new TableInfoDTO();
+        dto.setName(tableInfo.getName());
+        dto.setTemplateGroupName(tableInfo.getTemplateGroupName());
+        dto.setSavePath(tableInfo.getSavePath());
+        dto.setPreName(tableInfo.getPreName());
+        dto.setComment(tableInfo.getComment());
+        dto.setSavePackageName(tableInfo.getSavePackageName());
+        dto.setSaveModelName(tableInfo.getSaveModelName());
+        dto.setFullColumn(new ArrayList<>());
+        // 处理列
+        for (ColumnInfo columnInfo : tableInfo.getFullColumn()) {
+            ColumnInfoDTO columnInfoDTO = new ColumnInfoDTO();
+            columnInfoDTO.setName(columnInfo.getName());
+            columnInfoDTO.setType(columnInfo.getType());
+            columnInfoDTO.setExt(JSON.toJson(columnInfo.getExt()));
+            columnInfoDTO.setCustom(columnInfo.getCustom());
+            columnInfoDTO.setComment(columnInfo.getComment());
+            dto.getFullColumn().add(columnInfoDTO);
+        }
+        return dto;
+    }
 
     public TableInfo toTableInfo(PsiClass psiClass) {
         TableInfo tableInfo = new TableInfo();
@@ -260,28 +278,5 @@ public class TableInfoDTO {
             }
         }
         return tableInfo;
-    }
-
-    public static TableInfoDTO valueOf(TableInfo tableInfo) {
-        TableInfoDTO dto = new TableInfoDTO();
-        dto.setName(tableInfo.getName());
-        dto.setTemplateGroupName(tableInfo.getTemplateGroupName());
-        dto.setSavePath(tableInfo.getSavePath());
-        dto.setPreName(tableInfo.getPreName());
-        dto.setComment(tableInfo.getComment());
-        dto.setSavePackageName(tableInfo.getSavePackageName());
-        dto.setSaveModelName(tableInfo.getSaveModelName());
-        dto.setFullColumn(new ArrayList<>());
-        // 处理列
-        for (ColumnInfo columnInfo : tableInfo.getFullColumn()) {
-            ColumnInfoDTO columnInfoDTO = new ColumnInfoDTO();
-            columnInfoDTO.setName(columnInfo.getName());
-            columnInfoDTO.setType(columnInfo.getType());
-            columnInfoDTO.setExt(JSON.toJson(columnInfo.getExt()));
-            columnInfoDTO.setCustom(columnInfo.getCustom());
-            columnInfoDTO.setComment(columnInfo.getComment());
-            dto.getFullColumn().add(columnInfoDTO);
-        }
-        return dto;
     }
 }

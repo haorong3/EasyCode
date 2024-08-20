@@ -11,7 +11,18 @@ import java.util.regex.Pattern;
  * @since 2018/07/17 13:10
  */
 public class NameUtils {
+    /**
+     * 转驼峰命名正则匹配规则
+     */
+    private static final Pattern TO_HUMP_PATTERN = Pattern.compile("[-_]([a-z0-9])");
+    private static final Pattern TO_LINE_PATTERN = Pattern.compile("[A-Z]+");
     private volatile static NameUtils nameUtils;
+
+    /**
+     * 私有构造方法
+     */
+    NameUtils() {
+    }
 
     /**
      * 单例模式
@@ -26,18 +37,6 @@ public class NameUtils {
         }
         return nameUtils;
     }
-
-    /**
-     * 私有构造方法
-     */
-    NameUtils() {
-    }
-
-    /**
-     * 转驼峰命名正则匹配规则
-     */
-    private static final Pattern TO_HUMP_PATTERN = Pattern.compile("[-_]([a-z0-9])");
-    private static final Pattern TO_LINE_PATTERN = Pattern.compile("[A-Z]+");
 
     /**
      * 首字母大写方法
@@ -68,6 +67,7 @@ public class NameUtils {
     public String lowerToUpperCamelCase(String name) {
         return StringUtils.lowerToUpperCamelCase(name);
     }
+
     /**
      * 将大驼峰命名转换为小驼峰命名
      *

@@ -61,16 +61,16 @@ public class ConfigTableDialog extends DialogWrapper {
         TableColumn nameColumn = table.getColumn("name");
         nameColumn.setCellEditor(CellEditorFactory.createTextFieldEditor());
         nameColumn.setMinWidth(100);
-        totalWidth+=100;
+        totalWidth += 100;
         TableColumn typeColumn = table.getColumn("type");
         typeColumn.setCellRenderer(new ComboBoxTableRenderer<>(GlobalDict.DEFAULT_JAVA_TYPE_LIST));
         typeColumn.setCellEditor(CellEditorFactory.createComboBoxEditor(true, GlobalDict.DEFAULT_JAVA_TYPE_LIST));
         typeColumn.setMinWidth(120);
-        totalWidth+=120;
+        totalWidth += 120;
         TableColumn commentColumn = table.getColumn("comment");
         commentColumn.setCellEditor(CellEditorFactory.createTextFieldEditor());
         commentColumn.setMinWidth(140);
-        totalWidth+=140;
+        totalWidth += 140;
         // 其他附加列
         for (ColumnConfig columnConfig : CurrGroupUtils.getCurrColumnConfigGroup().getElementList()) {
             TableColumn column = table.getColumn(columnConfig.getTitle());
@@ -78,7 +78,7 @@ public class ConfigTableDialog extends DialogWrapper {
                 case TEXT:
                     column.setCellEditor(CellEditorFactory.createTextFieldEditor());
                     column.setMinWidth(120);
-                    totalWidth+=120;
+                    totalWidth += 120;
                     break;
                 case SELECT:
                     if (StringUtils.isEmpty(columnConfig.getSelectValue())) {
@@ -93,13 +93,13 @@ public class ConfigTableDialog extends DialogWrapper {
                         column.setCellEditor(CellEditorFactory.createComboBoxEditor(false, split));
                     }
                     column.setMinWidth(100);
-                    totalWidth+=100;
+                    totalWidth += 100;
                     break;
                 case BOOLEAN:
                     column.setCellRenderer(new BooleanTableCellRenderer());
                     column.setCellEditor(new BooleanTableCellEditor());
                     column.setMinWidth(60);
-                    totalWidth+=60;
+                    totalWidth += 60;
                     break;
                 default:
                     break;

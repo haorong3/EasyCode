@@ -276,7 +276,7 @@
 
     <application-components>
         <!--<component>-->
-            <!--<implementation-class>com.sjhy.plugin.tool.CloneUtils</implementation-class>-->
+        <!--<implementation-class>com.sjhy.plugin.tool.CloneUtils</implementation-class>-->
         <!--</component>-->
     </application-components>
 
@@ -287,7 +287,8 @@
         <applicationService serviceImplementation="com.sjhy.plugin.service.impl.SettingsStorageServiceImpl"/>
         <!--项目服务-->
         <projectService serviceImplementation="com.sjhy.plugin.service.impl.TableInfoSettingsServiceImpl"/>
-        <projectService serviceInterface="com.sjhy.plugin.service.CodeGenerateService" serviceImplementation="com.sjhy.plugin.service.impl.CodeGenerateServiceImpl"/>
+        <projectService serviceInterface="com.sjhy.plugin.service.CodeGenerateService"
+                        serviceImplementation="com.sjhy.plugin.service.impl.CodeGenerateServiceImpl"/>
         <!--系统设置面板-->
         <applicationConfigurable dynamic="true" instance="com.sjhy.plugin.ui.MainSettingForm"/>
     </extensions>

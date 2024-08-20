@@ -31,6 +31,10 @@ import java.util.stream.Collectors;
  */
 public class CodeGenerateServiceImpl implements CodeGenerateService {
     /**
+     * 导入包时过滤的包前缀
+     */
+    private static final String FILTER_PACKAGE_NAME = "java.lang";
+    /**
      * 项目对象
      */
     private Project project;
@@ -46,10 +50,6 @@ public class CodeGenerateServiceImpl implements CodeGenerateService {
      * 缓存数据工具
      */
     private CacheDataUtils cacheDataUtils;
-    /**
-     * 导入包时过滤的包前缀
-     */
-    private static final String FILTER_PACKAGE_NAME = "java.lang";
 
     public CodeGenerateServiceImpl(Project project) {
         this.project = project;

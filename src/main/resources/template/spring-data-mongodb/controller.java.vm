@@ -42,47 +42,47 @@ import org.springframework.web.bind.annotation.RestController;
 @AllArgsConstructor
 public class $!{tableName} {
 
-	private $serviceSortType $serviceVarName;
+private $serviceSortType $serviceVarName;
 
-	/**
-	 * 获取$!{tableInfo.comment}列表(分页)
-	 */
-	@GetMapping("/list")
-	public Page<$entityShortType> list(Pageable page) {
-		return null;
-	}
+/**
+ * 获取$!{tableInfo.comment}列表(分页)
+ */
+@GetMapping("/list")
+public Page<$entityShortType> list(Pageable page) {
+    return null;
+}
 
-	/**
-	 * 获取$!{tableInfo.comment}
-	 */
-	@GetMapping("/get")
-	public $entityShortType get($!pk.shortType id) {
-		return ${serviceVarName}.findById(id);
-	}
+/**
+ * 获取$!{tableInfo.comment}
+ */
+@GetMapping("/get")
+public $entityShortType get($!pk.shortType id) {
+    return ${serviceVarName}.findById(id);
+}
 
-	/**
-	 * 添加$!{tableInfo.comment}
-	 */
-	@PostMapping("/add")
-	public void add(@RequestBody $entityShortType $entityVarName) {
-		${serviceVarName}.save($entityVarName);
-	}
+/**
+ * 添加$!{tableInfo.comment}
+ */
+@PostMapping("/add")
+public void add(@RequestBody $entityShortType $entityVarName) {
+    ${serviceVarName}.save($entityVarName);
+}
 
 
-	/**
-	 * 修改$!{tableInfo.comment}
-	 */
-	@PostMapping("/update")
-	public void update(@RequestBody $entityShortType $entityVarName) {
-		${serviceVarName}.save($entityVarName);
-	}
+/**
+ * 修改$!{tableInfo.comment}
+ */
+@PostMapping("/update")
+public void update(@RequestBody $entityShortType $entityVarName) {
+    ${serviceVarName}.save($entityVarName);
+}
 
-	/**
-	 * 删除$!{tableInfo.comment}
-	 */
-	@PostMapping("/delete")
-	public void delete($!pk.shortType id) {
-		${serviceVarName}.deleteById(id);
-	}
+/**
+ * 删除$!{tableInfo.comment}
+ */
+@PostMapping("/delete")
+public void delete($!pk.shortType id) {
+    ${serviceVarName}.deleteById(id);
+}
 
 }

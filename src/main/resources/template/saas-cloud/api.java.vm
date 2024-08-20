@@ -1,0 +1,23 @@
+$!{define.vm}
+$!{init.vm}
+#setTableSuffix("Url")
+##包路径（宏定义）
+#setPackageSuffix("url")
+##保存文件（宏定义）
+#save("/url", "Url.java")
+##表注释（宏定义）
+#tableComment("接口地址")
+public class $!{tableName}  {
+
+// ${tableInfo.comment}相关列表（管理端）
+        public static final String $tool.upperCamelToSnakeCase($!{tableInfo.name})_ADMIN_LIST = "/$tool.firstLowerCase($!{tableInfo.name})/admin/list";
+// ${tableInfo.comment}查询单个（管理端）
+        public static final String $tool.upperCamelToSnakeCase($!{tableInfo.name})_ADMIN_BYID = "/$tool.firstLowerCase($!{tableInfo.name})/admin/byid";
+// ${tableInfo.comment}新增（管理端）
+        public static final String $tool.upperCamelToSnakeCase($!{tableInfo.name})_ADMIN_ADD = "/$tool.firstLowerCase($!{tableInfo.name})/admin/add";
+// ${tableInfo.comment}编辑（管理端）
+        public static final String $tool.upperCamelToSnakeCase($!{tableInfo.name})_ADMIN_EDIT = "/$tool.firstLowerCase($!{tableInfo.name})/admin/edit";
+// ${tableInfo.comment}删除（管理端）
+        public static final String $tool.upperCamelToSnakeCase($!{tableInfo.name})_ADMIN_DELETE = "/$tool.firstLowerCase($!{tableInfo.name})/admin/delete";
+    
+}

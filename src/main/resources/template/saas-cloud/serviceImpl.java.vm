@@ -1,0 +1,53 @@
+##导入宏定义
+$!{define.vm}
+$!{init.vm}
+##设置表后缀（宏定义）
+#setTableSuffix("ServiceImpl")
+
+##保存文件（宏定义）
+#save("/service/impl", "ServiceImpl.java")
+
+##包路径（宏定义）
+#setPackageSuffix("service.impl")
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import $!{tableInfo.savePackageName}.mapper.$!{tableInfo.name}Mapper;
+import $!{tableInfo.savePackageName}.entity.$!{tableInfo.name};
+import $!{tableInfo.savePackageName}.service.I$!{tableInfo.name}Service;
+import $!{tableInfo.savePackageName}.dto.$!{tableInfo.name}Dto;
+import cn.busboss.sc.common.core.web.ui.devexpress.loadoptions.LoadOptions;
+import cn.hutool.core.bean.BeanUtil;
+import org.springframework.stereotype.Service;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+
+import java.util.List;
+import java.util.Map;
+##表注释（宏定义）
+#tableComment("表服务实现类")
+@Service
+public class $!{tableName} extends ServiceImpl<$!{tableInfo.name}Mapper, $!{tableInfo.name}> implements
+
+I$!{tableInfo.name}Service {
+
+    /**
+     * 动态分页查询
+     * @param loadOptions
+     * @return
+     */
+    @Override
+    public Page<$!{tableInfo.name}> dynamicPagination (LoadOptions < $!{tableInfo.name}Dto > loadOptions) {
+        Map<String, Object> params = BeanUtil.beanToMap(loadOptions);
+
+        long total = this.baseMapper.dynamicPagination_COUNT(params);
+        List<$!{tableInfo.name}> records = this.baseMapper.dynamicPagination(params);
+
+        // 构造分页结果信息
+        Page<$!{tableInfo.name}> page = new Page<>();
+        page.setTotal(total);
+        page.setRecords(records);
+        page.setCurrent(loadOptions.getSkip() / loadOptions.getTake() + 1);
+        page.setSize(loadOptions.getTake());
+
+        return page;
+    }
+}

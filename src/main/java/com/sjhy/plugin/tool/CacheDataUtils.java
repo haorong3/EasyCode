@@ -16,6 +16,25 @@ import java.util.List;
 @Data
 public class CacheDataUtils {
     private volatile static CacheDataUtils cacheDataUtils;
+    /**
+     * 当前选中的表
+     */
+    private DbTable selectDbTable;
+    /**
+     * 所有选中的表
+     */
+    private List<DbTable> dbTableList;
+    /**
+     * 选中的类
+     */
+    private PsiClass selectPsiClass;
+    /**
+     * 所有选中的表
+     */
+    private List<PsiClass> psiClassList;
+
+    private CacheDataUtils() {
+    }
 
     /**
      * 单例模式
@@ -30,26 +49,4 @@ public class CacheDataUtils {
         }
         return cacheDataUtils;
     }
-
-    private CacheDataUtils() {
-    }
-
-    /**
-     * 当前选中的表
-     */
-    private DbTable selectDbTable;
-    /**
-     * 所有选中的表
-     */
-    private List<DbTable> dbTableList;
-
-    /**
-     * 选中的类
-     */
-    private PsiClass selectPsiClass;
-
-    /**
-     * 所有选中的表
-     */
-    private List<PsiClass> psiClassList;
 }

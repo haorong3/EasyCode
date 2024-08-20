@@ -23,45 +23,45 @@ import org.springframework.data.domain.PageRequest;
  */
 public interface $!{tableName} {
 
-    /**
-     * 通过ID查询单条数据
-     *
-     * @param $!pk.name 主键
-     * @return 实例对象
-     */
+/**
+ * 通过ID查询单条数据
+ *
+ * @param $!pk.name 主键
+ * @return 实例对象
+ */
     $!{tableInfo.name} queryById($!pk.shortType $!pk.name);
 
-    /**
-     * 分页查询
-     *
-     * @param $!tool.firstLowerCase($!{tableInfo.name}) 筛选条件
-     * @param pageRequest      分页对象
-     * @return 查询结果
-     */
-    Page<$!{tableInfo.name}> queryByPage($!{tableInfo.name} $!tool.firstLowerCase($!{tableInfo.name}), PageRequest pageRequest);
+/**
+ * 分页查询
+ *
+ * @param $!tool.firstLowerCase($!{tableInfo.name}) 筛选条件
+ * @param pageRequest      分页对象
+ * @return 查询结果
+ */
+Page<$!{tableInfo.name}> queryByPage($!{tableInfo.name} $!tool.firstLowerCase($!{tableInfo.name}), PageRequest pageRequest);
 
-    /**
-     * 新增数据
-     *
-     * @param $!tool.firstLowerCase($!{tableInfo.name}) 实例对象
-     * @return 实例对象
-     */
+/**
+ * 新增数据
+ *
+ * @param $!tool.firstLowerCase($!{tableInfo.name}) 实例对象
+ * @return 实例对象
+ */
     $!{tableInfo.name} insert($!{tableInfo.name} $!tool.firstLowerCase($!{tableInfo.name}));
 
-    /**
-     * 修改数据
-     *
-     * @param $!tool.firstLowerCase($!{tableInfo.name}) 实例对象
-     * @return 实例对象
-     */
+/**
+ * 修改数据
+ *
+ * @param $!tool.firstLowerCase($!{tableInfo.name}) 实例对象
+ * @return 实例对象
+ */
     $!{tableInfo.name} update($!{tableInfo.name} $!tool.firstLowerCase($!{tableInfo.name}));
 
-    /**
-     * 通过主键删除数据
-     *
-     * @param $!pk.name 主键
-     * @return 是否成功
-     */
-    boolean deleteById($!pk.shortType $!pk.name);
+/**
+ * 通过主键删除数据
+ *
+ * @param $!pk.name 主键
+ * @return 是否成功
+ */
+boolean deleteById($!pk.shortType $!pk.name);
 
 }

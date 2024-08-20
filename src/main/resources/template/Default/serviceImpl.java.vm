@@ -28,7 +28,9 @@ import javax.annotation.Resource;
  * @since $!time.currTime()
  */
 @Service("$!tool.firstLowerCase($!{tableInfo.name})Service")
-public class $!{tableName} implements $!{tableInfo.name}Service {
+public class $!{tableName} implements
+
+    $!{tableInfo.name}Service {
     @Resource
     private $!{tableInfo.name}Dao $!tool.firstLowerCase($!{tableInfo.name})Dao;
 
@@ -51,7 +53,8 @@ public class $!{tableName} implements $!{tableInfo.name}Service {
      * @return 查询结果
      */
     @Override
-    public Page<$!{tableInfo.name}> queryByPage($!{tableInfo.name} $!{tool.firstLowerCase($tableInfo.name)}, PageRequest pageRequest) {
+    public Page<$!{tableInfo.name}> queryByPage
+    ($!{tableInfo.name} $!{tool.firstLowerCase($tableInfo.name)}, PageRequest pageRequest){
         long total = this.$!{tool.firstLowerCase($tableInfo.name)}Dao.count($!{tool.firstLowerCase($tableInfo.name)});
         return new PageImpl<>(this.$!{tool.firstLowerCase($tableInfo.name)}Dao.queryAllByLimit($!{tool.firstLowerCase($tableInfo.name)}, pageRequest), pageRequest, total);
     }
@@ -87,7 +90,7 @@ public class $!{tableName} implements $!{tableInfo.name}Service {
      * @return 是否成功
      */
     @Override
-    public boolean deleteById($!pk.shortType $!pk.name) {
+    public boolean deleteById ($!pk.shortType $!pk.name) {
         return this.$!{tool.firstLowerCase($!{tableInfo.name})}Dao.deleteById($!pk.name) > 0;
     }
 }

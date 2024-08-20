@@ -17,7 +17,8 @@ public class AbstractItemFactory {
         try {
             T instance = cls.getDeclaredConstructor().newInstance();
             return instance.defaultVal();
-        } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
+        } catch (InstantiationException | IllegalAccessException | NoSuchMethodException |
+                 InvocationTargetException e) {
             throw new IllegalArgumentException("构建示例失败", e);
         }
     }

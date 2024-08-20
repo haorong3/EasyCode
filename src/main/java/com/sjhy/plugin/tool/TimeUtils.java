@@ -13,6 +13,10 @@ import java.util.Date;
 public class TimeUtils {
     private static volatile TimeUtils timeUtils;
 
+    private TimeUtils() {
+
+    }
+
     /**
      * 单例模式
      *
@@ -27,10 +31,6 @@ public class TimeUtils {
             }
         }
         return timeUtils;
-    }
-
-    private TimeUtils() {
-
     }
 
     /**

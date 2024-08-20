@@ -1,7 +1,6 @@
 package com.sjhy.plugin.tool;
 
 import com.intellij.codeInsight.actions.AbstractLayoutCodeProcessor;
-import com.intellij.codeInsight.actions.OptimizeImportsProcessor;
 import com.intellij.codeInsight.actions.ReformatCodeProcessor;
 import com.intellij.openapi.command.WriteCommandAction;
 import com.intellij.openapi.diagnostic.Logger;
@@ -36,6 +35,9 @@ public class FileUtils {
     private static final Logger LOG = Logger.getInstance(FileUtils.class);
     private static volatile FileUtils fileUtils;
 
+    private FileUtils() {
+    }
+
     /**
      * 单例模式
      */
@@ -48,9 +50,6 @@ public class FileUtils {
             }
         }
         return fileUtils;
-    }
-
-    private FileUtils() {
     }
 
     /**
@@ -164,7 +163,8 @@ public class FileUtils {
             processor = constructor.newInstance(processor);
         } catch (ClassNotFoundException ignored) {
             // 类不存在直接忽略
-        } catch (NoSuchMethodException | IllegalAccessException | InstantiationException | InvocationTargetException e) {
+        } catch (NoSuchMethodException | IllegalAccessException | InstantiationException |
+                 InvocationTargetException e) {
             // 抛出未知异常
             ExceptionUtil.rethrow(e);
         }

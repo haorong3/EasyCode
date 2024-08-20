@@ -10,32 +10,35 @@ $!{define.vm}
 ##自动导入包（全局变量）
 $!{autoImport.vm}
 import com.baomidou.mybatisplus.extension.activerecord.Model;
+
 import java.io.Serializable;
 
 ##表注释（宏定义）
 #tableComment("表实体类")
 @SuppressWarnings("serial")
-public class $!{tableInfo.name} extends Model<$!{tableInfo.name}> {
-#foreach($column in $tableInfo.fullColumn)
-    #if(${column.comment})//${column.comment}#end
+public class $!{tableInfo.name} extends Model
 
-    private $!{tool.getClsNameByFullName($column.type)} $!{column.name};
-#end
+<$!{tableInfo.name}> {
+    #foreach($column in $tableInfo.fullColumn)
+        #if(${column.comment})//${column.comment}#end
 
-#foreach($column in $tableInfo.fullColumn)
-#getSetMethod($column)
-#end
+        private $!{tool.getClsNameByFullName($column.type)} $!{column.name};
+    #end
 
-#foreach($column in $tableInfo.pkColumn)
-    /**
-     * 获取主键值
-     *
-     * @return 主键值
-     */
-    @Override
-    protected Serializable pkVal() {
+    #foreach($column in $tableInfo.fullColumn)
+        #getSetMethod($column)
+    #end
+
+    #foreach($column in $tableInfo.pkColumn)
+        /**
+         * 获取主键值
+         *
+         * @return 主键值
+         */
+        @Override
+        protected Serializable pkVal () {
         return this.$!column.name;
     }
-    #break
-#end
+        #break
+    #end
 }

@@ -11,10 +11,12 @@ $!{define.vm}
 #setPackageSuffix("dao")
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import $!{tableInfo.savePackageName}.entity.$!tableInfo.name;
+import $!{tableInfo.savePackageName}.entity .$!tableInfo.name;
 
-##表注释（宏定义）
-#tableComment("表数据库访问层")
-public interface $!{tableName} extends BaseMapper<$!tableInfo.name> {
+    ##表注释（宏定义）
+    #tableComment("表数据库访问层")
+public interface $!{tableName} extends BaseMapper
+
+<$!tableInfo.name> {
 
 }

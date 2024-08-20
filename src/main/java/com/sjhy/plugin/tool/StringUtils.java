@@ -55,6 +55,7 @@ public class StringUtils {
 
     /**
      * 首字母大写方法
+     *
      * @param str 字符串
      * @return 首字母大写结果
      */
@@ -64,6 +65,7 @@ public class StringUtils {
 
     /**
      * 首字母小写方法
+     *
      * @param str 字符串
      * @return 首字母小写结果
      */

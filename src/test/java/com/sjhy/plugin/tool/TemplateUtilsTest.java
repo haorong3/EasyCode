@@ -6,8 +6,6 @@ import org.junit.Test;
 
 import java.util.Collections;
 
-import static org.junit.Assert.*;
-
 /**
  * 模板工具测试用例
  *

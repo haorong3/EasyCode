@@ -129,11 +129,6 @@ public class SelectSavePath extends DialogWrapper {
         this(project, false);
     }
 
-    @Override
-    protected @Nullable JComponent createCenterPanel() {
-        return this.contentPane;
-    }
-
     /**
      * 构造方法
      */
@@ -160,6 +155,11 @@ public class SelectSavePath extends DialogWrapper {
         setTitle(GlobalDict.TITLE_INFO);
         //初始化路径
         refreshPath();
+    }
+
+    @Override
+    protected @Nullable JComponent createCenterPanel() {
+        return this.contentPane;
     }
 
     private void initEvent() {
@@ -189,7 +189,8 @@ public class SelectSavePath extends DialogWrapper {
                         // 刷新路径
                         refreshPath();
                     }
-                } catch (NoSuchMethodException | IllegalAccessException | InstantiationException | InvocationTargetException e1) {
+                } catch (NoSuchMethodException | IllegalAccessException | InstantiationException |
+                         InvocationTargetException e1) {
                     ExceptionUtil.rethrow(e1);
                 }
             });
@@ -226,7 +227,7 @@ public class SelectSavePath extends DialogWrapper {
     private void refreshData() {
         // 获取选中的表信息（鼠标右键的那张表），并提示未知类型
         TableInfo tableInfo;
-        if(entityMode) {
+        if (entityMode) {
             tableInfo = tableInfoService.getTableInfo(cacheDataUtils.getSelectPsiClass());
         } else {
             tableInfo = tableInfoService.getTableInfo(cacheDataUtils.getSelectDbTable());
@@ -297,7 +298,7 @@ public class SelectSavePath extends DialogWrapper {
         }
         // 保存配置
         TableInfo tableInfo;
-        if(!entityMode) {
+        if (!entityMode) {
             tableInfo = tableInfoService.getTableInfo(cacheDataUtils.getSelectDbTable());
         } else {
             tableInfo = tableInfoService.getTableInfo(cacheDataUtils.getSelectPsiClass());

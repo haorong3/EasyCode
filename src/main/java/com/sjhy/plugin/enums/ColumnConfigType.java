@@ -1,7 +1,7 @@
 package com.sjhy.plugin.enums;
 
 /**
- *  列配置类型
+ * 列配置类型
  *
  * @author makejava
  * @version 1.0.0
