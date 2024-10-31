@@ -99,6 +99,18 @@ public class NameUtils {
         return StringUtils.upperCamelToSnakeCase(name);
     }
 
+
+    /**
+     * 根据给定的名称生成短别名
+     * 此方法用于将输入的名称转换为更短的别名形式，通常用于简化名称或生成易于使用的标识
+     *
+     * @param name 需要生成别名的原始名称
+     * @return 生成的短别名
+     */
+    public String generateShortAlias(String name) {
+        return StringUtils.generateShortAlias(name);
+    }
+
     /**
      * 驼峰转下划线，全小写
      *

@@ -211,4 +211,25 @@ public class StringUtils {
         // 将最终结果转换为大写字母
         return result.toString().toUpperCase();
     }
+
+    /**
+     * 将表名转换为简短别名
+     *
+     * @param tableName 表名，例如：user_info
+     * @return 简短别名，例如：ui
+     */
+    public static String generateShortAlias(String tableName) {
+        // 分割表名中的单词
+        String[] words = tableName.split("_");
+        StringBuilder shortAlias = new StringBuilder();
+
+        for (String word : words) {
+            if (!word.isEmpty()) {
+                // 取每个单词的首字母
+                shortAlias.append(word.charAt(0));
+            }
+        }
+
+        return shortAlias.toString().toLowerCase();
+    }
 }
